@@ -52,7 +52,7 @@ class Pt implements Translations {
     foundIAText: 'Encontrei algumas possibilidades pra você.',
     notFoundIAText: 'Não Encontramos nenhuma possibilidade por enquanto :(.',
     notFoundWithWarningIAText: 'Não Encontramos nenhuma possibilidade por enquanto. Considere '
-        'aumentar a assertividade nas configurações.',
+        'reajustar a porcentagem de assertividade nas configurações.',
   );
 
   @override
@@ -63,6 +63,8 @@ class Pt implements Translations {
     ticTac: 'TicTac',
     hitAndTake: 'Bate e Toma',
     absence: 'Ausencia',
+    terminal: 'Terminal',
+    repeatAbsence: 'Repetição-Ausência',
   );
 
   @override
@@ -118,6 +120,7 @@ class Pt implements Translations {
     'Maior probabilidade: ',
     'exemplo: ',
     ' de ',
+    'e ',
     '.',
     ],
   );
@@ -133,6 +136,7 @@ class Pt implements Translations {
       'Maior probabilidade: ',
       'exemplo: ',
       ' de ',
+      'e ',
       '.',
     ],
   );
@@ -144,13 +148,22 @@ class Pt implements Translations {
     red: 'Vermelho',
     green: 'Verde',
     yellow: 'Amarelo',
-    alternation: 'Alternância',
-    absence: 'Ausência',
-    repeatAbsence: 'Repetição-Ausência',
+
     transcription: [
       'Maior probabilidade: ',
       'exemplo: ',
       ' de ',
+      'e ',
+      '.',
+    ],
+  );
+
+  @override
+  TerminalChartTranslate terminalChartTranslate = TerminalChartTranslate(
+    title: 'Terminal',
+    subtitle: 'Probabilidade de terminal',
+    transcription: [
+      'Maior probabilidade: ',
       '.',
     ],
   );
@@ -221,6 +234,9 @@ class Pt implements Translations {
     easyFound: 'Ótima escolha! Equilíbrio ideal entre tempo e precisão.',
     moderateLowFound: 'Padrões fortes, porém raros. Requer paciência.',
     biggerLowFound: 'Se achar um padrão assim, me avise que eu jogo também!',
+    lightTheme: 'Claro',
+    darkTheme: 'Escuro',
+    systemTheme: 'Sistema',
   );
 
   @override

@@ -11,6 +11,9 @@ class ConfigModuleTranslate {
   late String easyFound;
   late String moderateLowFound;
   late String biggerLowFound;
+  late String lightTheme;
+  late String darkTheme;
+  late String systemTheme;
 
   ConfigModuleTranslate({
     required this.pageTitle,
@@ -25,5 +28,8 @@ class ConfigModuleTranslate {
     required this.easyFound,
     required this.moderateLowFound,
     required this.biggerLowFound,
+    required this.lightTheme,
+    required this.darkTheme,
+    required this.systemTheme,
   });
 }

@@ -1,14 +1,10 @@
-import '../enums/_enums.dart';
-import 'trial_prob_result_entity.dart';
+import '_entities.dart';
 
-abstract class SectorProbResultEntity {
-  late ModelProbType modelProbType;
-  late int minProbability;
+abstract class SectorProbResultEntity extends ProbResultEntity{
   late TrialProbEntity alternation;
   late TrialProbEntity repeat;
   late TrialProbEntity absence;
   late TrialProbEntity ticTac;
-  bool get hasProbability;
   TrialProbEntity? get highestPercent;
 }
 

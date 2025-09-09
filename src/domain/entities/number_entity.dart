@@ -17,13 +17,16 @@ enum EvenOddType {
 }
 
 enum SectorType {
-  zero('Zero'),
-  green('Verde'),
-  red('Vermelho'),
-  yellow('Amarelo');
+  zero('Zero', 0),
+  green('Verde', 29),
+  red('Vermelho', 2),
+  yellow('Amarelo', 10);
 
   final String name;
-  const SectorType(this.name);
+  final int center;
+
+  static SectorType getSector(String sectorName) => values.singleWhere((e) => e.name == sectorName);
+  const SectorType(this.name, this.center);
 }
 
 enum DecadeType {
@@ -56,28 +59,73 @@ enum HighLowType {
 }
 
 enum TerminalType {
-  zero('Zero', 0, [0, 10, 20, 30], [26, 32, 23, 5, 1, 14, 11, 8]),
-  one('Um', 1, [1, 11, 21, 31], [33, 20, 36, 30, 4, 2, 14, 9]),
-  two('Dois', 2, [2, 12, 22, 32], [21, 25, 28, 35, 9, 18, 0, 15]),
-  three('Tres', 3, [3, 13, 23, 33], [35, 26, 27, 36, 8, 10, 16, 1]),
-  four('Quatro', 4, [4, 14, 24, 34], [19, 21, 20, 31, 5, 16, 17, 6]),
-  five('Cinco', 5, [5, 15, 25, 35], [10, 24, 32, 19, 2, 17, 12, 3]),
-  six('Seis', 6, [6, 16, 26, 36], [34, 27, 24, 33, 3, 0, 13, 11]),
-  seven('Sete', 7, [7, 17, 27], [29, 28, 25, 34, 6, 13]),
-  eight('Oito', 8, [8, 18, 28], [30, 23, 22, 29, 7, 12]),
-  nine('Nove', 9, [9, 19, 29], [31, 22, 15, 4, 18, 7]);
+  zero({
+    0: [26, 32],
+    10: [23, 5],
+    20: [1, 14],
+    30: [11, 8]
+  }),
+  one({
+    1: [33, 20],
+    11: [36, 30],
+    21: [4, 2],
+    31: [14, 9]
+  }),
+  two({
+    2: [21, 25],
+    12: [28, 35],
+    22: [9, 18],
+    32: [0, 15]
+  }),
+  three({
+    3: [35, 26],
+    13: [27, 36],
+    23: [8, 10],
+    33: [16, 1]
+  }),
+  four({
+    4: [19, 21],
+    14: [20, 31],
+    24: [5, 16],
+    34: [17, 6]
+  }),
+  five({
+    5: [10, 24],
+    15: [32, 19],
+    25: [2, 17],
+    35: [12, 3]
+  }),
+  six({
+    6: [34, 27],
+    16: [24, 33],
+    26: [3, 0],
+    36: [13, 11]
+  }),
+  seven({
+    7: [29, 28],
+    17: [25, 34],
+    27: [6, 13]
+  }),
+  eight({
+    8: [30, 23],
+    18: [22, 29],
+    28: [7, 12]
+  }),
+  nine({
+    9: [31, 22],
+    19: [15, 4],
+    29: [18, 7]
+  });
 
-  final String name;
-  final int? terminal;
-  final List<int> terminals;
-  final List<int> previousNext;
-  List<int> get completeTerminals => [...terminals, ...previousNext];
-  const TerminalType(this.name, this.terminal, this.terminals, this.previousNext);
+  final Map<int, List<int>> terminalSides;
+  int get terminal => terminalSides.keys.first;
+  const TerminalType(this.terminalSides);
 }
 
 abstract class NumberEntity {
   late int number;
   late String? key;
+  late DateTime? dateHour;
   ColorType get colorType;
   DecadeType get decadeType;
   ColumnType get columnType;

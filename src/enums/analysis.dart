@@ -28,8 +28,10 @@ extension ProbStatusExtension on ProbStatus {
         return R.strings.homeModuleTranslate.notFoundIAText;
       case ProbStatus.notFoundWithWarning:
         return R.strings.homeModuleTranslate.notFoundWithWarningIAText;
-      case ProbStatus.none:
-        return '';
+
+      default:
+        '';
     }
+    return '';
   }
 }

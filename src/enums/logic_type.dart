@@ -1,4 +1,4 @@
-import '../i18n/_i18n.dart';
+import '../i18n/resources.dart';
 
 enum LogicType {
   alternation,

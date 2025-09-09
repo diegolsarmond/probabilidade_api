@@ -1,9 +1,10 @@
-import '../entities/_entities.dart';
+import '../domain/entities/_entities.dart';
 import '../enums/_enums.dart';
 
 class SectorProbResultModel implements SectorProbResultEntity {
 
   SectorProbResultModel({
+    required this.id,
     required this.modelProbType,
     required this.minProbability,
     required this.absence,
@@ -11,6 +12,9 @@ class SectorProbResultModel implements SectorProbResultEntity {
     required this.alternation,
     required this.ticTac,
   });
+  @override
+  late final String id;
+
   @override
   late final ModelProbType modelProbType;
 
@@ -32,7 +36,7 @@ class SectorProbResultModel implements SectorProbResultEntity {
   @override
   bool get hasProbability {
     if (highestPercent == null) return false;
-    return highestPercent!.nextKey != null && highestPercent!.frequencyPercent > minProbability;
+    return highestPercent!.suggestion != null && highestPercent!.frequencyPercent > minProbability;
   }
 
   @override
@@ -49,7 +53,7 @@ class SectorProbResultModel implements SectorProbResultEntity {
       alternation: alternation.frequencyPercent,
       ticTac: ticTac.frequencyPercent,
     }.map((k, v) {
-      if (k.nextKey != null && (maxFreq?.frequencyPercent ?? 0) < v) maxFreq = k;
+      if (k.suggestion != null && (maxFreq?.frequencyPercent ?? 0) < v) maxFreq = k;
       return MapEntry(k, v);
     });
     return maxFreq;

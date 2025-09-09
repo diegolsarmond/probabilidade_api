@@ -1,11 +1,18 @@
 import 'dart:math';
+import 'package:uuid/uuid.dart';
+
 import '../domain/entities/_entities.dart';
+import '../extensions/_extensions.dart';
 
 class NumberItem implements NumberEntity {
   @override
   late int number;
   @override
   late String? key;
+
+  @override
+  late final DateTime? dateHour;
+
   @override
   ColorType get colorType => number == 0
       ? ColorType.zero
@@ -56,35 +63,39 @@ class NumberItem implements NumberEntity {
           : EvenOddType.odd;
 
   @override
-  TerminalType get terminalType => TerminalType.one.terminals.contains(number)
+  TerminalType get terminalType {
+    return TerminalType.one.terminal == number.getTerminal
       ? TerminalType.one
-      : TerminalType.two.terminals.contains(number)
+      : TerminalType.two.terminal == number.getTerminal
           ? TerminalType.two
-          : TerminalType.three.terminals.contains(number)
+          : TerminalType.three.terminal == number.getTerminal
               ? TerminalType.three
-              : TerminalType.four.terminals.contains(number)
+              : TerminalType.four.terminal == number.getTerminal
                   ? TerminalType.four
-                  : TerminalType.five.terminals.contains(number)
+                  : TerminalType.five.terminal == number.getTerminal
                       ? TerminalType.five
-                      : TerminalType.six.terminals.contains(number)
+                      : TerminalType.six.terminal == number.getTerminal
                           ? TerminalType.six
-                          : TerminalType.seven.terminals.contains(number)
+                          : TerminalType.seven.terminal == number.getTerminal
                               ? TerminalType.seven
-                              : TerminalType.eight.terminals.contains(number)
+                              : TerminalType.eight.terminal == number.getTerminal
                                   ? TerminalType.eight
-                                  : TerminalType.nine.terminals.contains(number)
+                                  : TerminalType.nine.terminal == number.getTerminal
                                       ? TerminalType.nine
                                       : TerminalType.zero;
+  }
 
   NumberItem({
     this.key,
     required this.number,
+    this.dateHour,
   }) : assert(number <= 36);
 
-  factory NumberItem.generateWithKey(int listLength, NumberEntity number) {
+  factory NumberItem.generateWithKey(NumberEntity number) {
     return NumberItem(
-      key: '${number.number}_${listLength}_${Random.secure().nextInt(999)}',
+      key: const Uuid().v4(),
       number: number.number,
+      dateHour: DateTime.now(),
     );
   }
 }

@@ -41,6 +41,7 @@ abstract class Translations {
   late TrialChartTranslate columnChartTranslate;
   late TrialChartTranslate decadeChartTranslate;
   late SectorChartTranslate sectorChartTranslate;
+  late TerminalChartTranslate terminalChartTranslate;
 
   Map<int?, List<String>> get httpErrors;
 }

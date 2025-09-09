@@ -54,4 +54,31 @@ class FirebaseAuthTranslate {
     'auth/popup-blocked': 'The popup window was blocked.',
     'auth/popup-closed-by-user': 'The popup window was closed by the user.',
   };
+
+  FirebaseAuthTranslate.es(): translate = {
+      null: 'Hubo un problema desconocido',
+      '': 'Hubo un problema desconocido',
+      'invalid-email': 'La dirección de correo electrónico está mal formateada.',
+      'user-not-found': 'No hay ningún registro de usuario que corresponda a este identificador.',
+      'wrong-password': 'La contraseña no es válida o el usuario no tiene contraseña.',
+      'account-exists-with-different-credential': 'Ya existe una cuenta con la misma dirección de correo electrónico pero con credenciales de inicio de sesión diferentes.',
+      'email-already-in-use': 'La dirección de correo electrónico ya está en uso por otra cuenta.',
+      'weak-password': 'La contraseña proporcionada es débil.',
+      'network-request-failed': 'Se ha producido un error de red (como tiempo de espera agotado, conexión interrumpida o host inaccesible).',
+      'user-disabled': 'La cuenta de usuario ha sido deshabilitada por un administrador.',
+      'operation-not-allowed': 'La operación no está permitida. Póngase en contacto con el soporte.',
+      'invalid-credential': 'Correo electrónico y contraseña no válidos, verifique los datos e intente nuevamente.',
+      'requires-recent-login': 'Esta operación es sensible y requiere autenticación reciente. Inicie sesión nuevamente antes de volver a intentar esta solicitud.',
+      'too-many-requests': 'Hemos bloqueado todas las solicitudes de este dispositivo debido a actividad inusual. Inténtalo de nuevo más tarde.',
+      'user-mismatch': 'Las credenciales proporcionadas no coinciden con el usuario que ha iniciado sesión actualmente.',
+      'provider-already-linked': 'El proveedor ya está vinculado al usuario.',
+      'auth/account-exists-with-different-credential': 'Ya existe una cuenta con la misma dirección de correo electrónico pero con credenciales de inicio de sesión diferentes.',
+      'auth/invalid-credential': 'Las credenciales proporcionadas no son válidas.',
+      'auth/user-not-found': 'No se encontró ningún usuario correspondiente.',
+      'auth/operation-not-allowed': 'La operación no está permitida. Póngase en contacto con el soporte.',
+      'auth/requires-recent-login': 'Esta operación es sensible y requiere autenticación reciente.',
+      'auth/cancelled-popup-request': 'La solicitud fue cancelada.',
+      'auth/popup-blocked': 'La ventana emergente fue bloqueada.',
+      'auth/popup-closed-by-user': 'El usuario cerró la ventana emergente.',
+    };
 }

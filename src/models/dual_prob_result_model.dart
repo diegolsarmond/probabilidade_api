@@ -1,15 +1,19 @@
-import '../dual_prob_usecase.dart';
-import '../entities/_entities.dart';
+import '../domain/entities/_entities.dart';
 import '../enums/_enums.dart';
 
 class DualProbResultModel implements DualProbResultEntity {
 
   DualProbResultModel({
+    required this.id,
     required this.alternation,
     required this.repeat,
     required this.modelProbType,
     required this.minProbability,
   });
+
+  @override
+  late final String id;
+
   @override
   late final ModelProbType modelProbType;
 
@@ -25,7 +29,7 @@ class DualProbResultModel implements DualProbResultEntity {
   @override
   bool get hasProbability {
     if (highestFrequencyPercent == null) return false;
-    return highestFrequencyPercent!.nextKey != null &&
+    return highestFrequencyPercent!.suggestion != null &&
         highestFrequencyPercent!.frequencyPercent > minProbability;
   }
 
@@ -40,16 +44,6 @@ class DualProbResultModel implements DualProbResultEntity {
 
 class DualProbResult implements DualProbEntity {
 
-  DualProbResult({
-    required this.key1,
-    required this.key2,
-    required this.frequencyPercent,
-    required this.nextKey,
-    required this.distinctNumbers,
-    required this.median,
-    required this.logicType,
-  });
-
   factory DualProbResult.fromMap({
     required Map<String, dynamic> map,
     required String key1,
@@ -61,11 +55,21 @@ class DualProbResult implements DualProbEntity {
       key2: key2,
       frequencyPercent: map['frequency'] as int,
       distinctNumbers: map['distinctNumbers'] as int,
-      nextKey: map['nextKey'] as String?,
+      suggestion: map['nextKey'] as String?,
       median: map['median'] as int,
       logicType: logicType,
     );
   }
+
+  DualProbResult({
+    required this.key1,
+    required this.key2,
+    required this.frequencyPercent,
+    required this.suggestion,
+    required this.distinctNumbers,
+    required this.median,
+    required this.logicType,
+  });
   @override
   late final double value1;
 
@@ -82,7 +86,7 @@ class DualProbResult implements DualProbEntity {
   late final int frequencyPercent;
 
   @override
-  late final String? nextKey;
+  late final String? suggestion;
 
   @override
   late final int distinctNumbers;

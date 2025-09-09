@@ -1,7 +1,11 @@
-import '../entities/_entities.dart';
+import '../domain/entities/_entities.dart';
 import '../enums/_enums.dart';
 
 class TrialProbResultModel implements TrialProbResultEntity {
+
+  @override
+  late final String id;
+
   @override
   late final ModelProbType modelProbType;
 
@@ -26,7 +30,7 @@ class TrialProbResultModel implements TrialProbResultEntity {
   @override
   bool get hasProbability {
     if (highestPercent == null) return false;
-    return highestPercent!.nextKey != null && highestPercent!.frequencyPercent > minProbability;
+    return highestPercent!.suggestion != null && highestPercent!.frequencyPercent > minProbability;
   }
 
   @override
@@ -44,13 +48,14 @@ class TrialProbResultModel implements TrialProbResultEntity {
       alternation: alternation.frequencyPercent,
       ticTac: ticTac.frequencyPercent,
     }.map((k, v) {
-      if (k.nextKey != null && (maxFreq?.frequencyPercent ?? 0) < v) maxFreq = k;
+      if (k.suggestion != null && (maxFreq?.frequencyPercent ?? 0) < v) maxFreq = k;
       return MapEntry(k, v);
     });
     return maxFreq;
   }
 
   TrialProbResultModel({
+    required this.id,
     required this.modelProbType,
     required this.minProbability,
     required this.ladder,
@@ -75,7 +80,7 @@ class TrialProbResult implements TrialProbEntity {
   late final int frequencyPercent;
 
   @override
-  late final String? nextKey;
+  late final String? suggestion;
 
   @override
   late final int median;
@@ -91,7 +96,7 @@ class TrialProbResult implements TrialProbEntity {
     required this.key2,
     required this.key3,
     required this.frequencyPercent,
-    required this.nextKey,
+    required this.suggestion,
     required this.median,
     required this.distinctNumbers,
     required this.logicType,
@@ -109,7 +114,7 @@ class TrialProbResult implements TrialProbEntity {
       key2: key2,
       key3: key3,
       frequencyPercent: map['frequency'] as int,
-      nextKey: map['nextKey'] as String?,
+      suggestion: map['nextKey'] as String?,
       median: map['median'] as int,
       distinctNumbers: map['distinctNumbers'] as List<String>,
       logicType: logicType,

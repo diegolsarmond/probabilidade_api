@@ -4,9 +4,6 @@ class SectorChartTranslate {
   late String red;
   late String green;
   late String yellow;
-  late String alternation;
-  late String absence;
-  late String repeatAbsence;
   late List<String> transcription;
 
   SectorChartTranslate({
@@ -15,9 +12,6 @@ class SectorChartTranslate {
     required this.red,
     required this.green,
     required this.yellow,
-    required this.alternation,
-    required this.absence,
-    required this.repeatAbsence,
     required this.transcription,
   });
 }
