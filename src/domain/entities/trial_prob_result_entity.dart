@@ -19,4 +19,5 @@ abstract class TrialProbEntity{
   late int median;
   late List<String> distinctNumbers;
   late final LogicType logicType;
+  Map<String, dynamic> get toMap;
 }

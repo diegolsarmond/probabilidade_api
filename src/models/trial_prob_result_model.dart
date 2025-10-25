@@ -3,6 +3,17 @@ import '../enums/_enums.dart';
 
 class TrialProbResultModel implements TrialProbResultEntity {
 
+  TrialProbResultModel({
+    required this.id,
+    required this.modelProbType,
+    required this.minProbability,
+    required this.ladder,
+    required this.hitAndTake,
+    required this.repeat,
+    required this.alternation,
+    required this.ticTac,
+  });
+
   @override
   late final String id;
 
@@ -53,43 +64,9 @@ class TrialProbResultModel implements TrialProbResultEntity {
     });
     return maxFreq;
   }
-
-  TrialProbResultModel({
-    required this.id,
-    required this.modelProbType,
-    required this.minProbability,
-    required this.ladder,
-    required this.hitAndTake,
-    required this.repeat,
-    required this.alternation,
-    required this.ticTac,
-  });
 }
 
 class TrialProbResult implements TrialProbEntity {
-  @override
-  late final String key1;
-
-  @override
-  late final String key2;
-
-  @override
-  late final String key3;
-
-  @override
-  late final int frequencyPercent;
-
-  @override
-  late final String? suggestion;
-
-  @override
-  late final int median;
-
-  @override
-  late final List<String> distinctNumbers;
-
-  @override
-  late final LogicType logicType;
 
   TrialProbResult({
     required this.key1,
@@ -120,4 +97,36 @@ class TrialProbResult implements TrialProbEntity {
       logicType: logicType,
     );
   }
+
+  @override
+  Map<String, dynamic> get toMap => {
+    'porcentagem': frequencyPercent,
+    'sugestao': suggestion,
+    'media': median,
+    'logica': logicType.nameTr,
+  };
+
+  @override
+  late final String key1;
+
+  @override
+  late final String key2;
+
+  @override
+  late final String key3;
+
+  @override
+  late final int frequencyPercent;
+
+  @override
+  late final String? suggestion;
+
+  @override
+  late final int median;
+
+  @override
+  late final List<String> distinctNumbers;
+
+  @override
+  late final LogicType logicType;
 }

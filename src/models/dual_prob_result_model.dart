@@ -44,6 +44,16 @@ class DualProbResultModel implements DualProbResultEntity {
 
 class DualProbResult implements DualProbEntity {
 
+  DualProbResult({
+    required this.key1,
+    required this.key2,
+    required this.frequencyPercent,
+    required this.suggestion,
+    required this.distinctNumbers,
+    required this.median,
+    required this.logicType,
+  });
+
   factory DualProbResult.fromMap({
     required Map<String, dynamic> map,
     required String key1,
@@ -61,15 +71,14 @@ class DualProbResult implements DualProbEntity {
     );
   }
 
-  DualProbResult({
-    required this.key1,
-    required this.key2,
-    required this.frequencyPercent,
-    required this.suggestion,
-    required this.distinctNumbers,
-    required this.median,
-    required this.logicType,
-  });
+  @override
+  Map<String, dynamic> get toMap => {
+    'porcentagem': frequencyPercent,
+    'sugestao': suggestion,
+    'media': median,
+    'logica': logicType.nameTr,
+  };
+
   @override
   late final double value1;
 

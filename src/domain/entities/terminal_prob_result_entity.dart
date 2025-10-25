@@ -11,4 +11,5 @@ abstract class TerminalProbEntity{
   late NumberEntity? suggestion;
   late int median;
   late ModelProbType logicType;
+  Map<String, dynamic> get toMap;
 }

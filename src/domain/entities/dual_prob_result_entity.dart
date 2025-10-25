@@ -17,6 +17,7 @@ abstract class DualProbEntity{
   late int distinctNumbers;
   late int median;
   late DualLogicType logicType;
+  Map<String, dynamic> get toMap;
 }
 
 enum DualLogicType {

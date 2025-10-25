@@ -44,6 +44,13 @@ class TerminalProbResultModel implements TerminalProbResultEntity {
 
 class TerminalProbResult implements TerminalProbEntity {
 
+  TerminalProbResult({
+    required this.frequencyPercent,
+    required this.suggestion,
+    required this.median,
+    required this.logicType,
+  });
+
   factory TerminalProbResult.fromMap({
     required Map<String, dynamic> map,
     required ModelProbType logicType,
@@ -56,12 +63,14 @@ class TerminalProbResult implements TerminalProbEntity {
     );
   }
 
-  TerminalProbResult({
-    required this.frequencyPercent,
-    required this.suggestion,
-    required this.median,
-    required this.logicType,
-  });
+  @override
+  Map<String, dynamic> get toMap => {
+    'porcentagem': frequencyPercent,
+    'sugestao': suggestion,
+    'media': median,
+    'logica': logicType.name,
+  };
+
   @override
   late final int frequencyPercent;
 
