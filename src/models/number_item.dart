@@ -99,17 +99,4 @@ class NumberItem implements NumberEntity {
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'key': key,
-      'number': number,
-      'dateHour': dateHour?.toIso8601String(),
-      'colorType': colorType.name,
-      'decadeType': decadeType.name,
-      'columnType': columnType.name,
-      'sectorType': sectorType.name,
-      'highLowType': highLowType.name,
-      'evenOddType': evenOddType.name,
-      'terminalType': terminalType.name,
-    };
-  }}
+}
