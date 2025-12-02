@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   probabilidade_api:
+    image: probabilidade_api:latest
     build: .
     container_name: probabilidade_api
     restart: unless-stopped
