@@ -6,10 +6,25 @@ services:
     build: .
     container_name: probabilidade_api
     restart: unless-stopped
-    ports:
-      - "8080:8080"
+    # ports:
+    #   - "8080:8080" # Acesso direto desativado em favor do Traefik
     environment:
       - DART_FROG_ENV=production
+    networks:
+      - proxy # Rede externa do Traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.probabilidade_api.rule=Host(`api.vmageste.com.br`)"
+      - "traefik.http.routers.probabilidade_api.entrypoints=websecure"
+      - "traefik.http.routers.probabilidade_api.priority=1"
+      - "traefik.http.routers.probabilidade_api.tls.certresolver=letsencryptresolver"
+      - "traefik.http.routers.probabilidade_api.service=probabilidade_api"
+      - "traefik.http.services.probabilidade_api.loadbalancer.server.port=8080"
+      - "traefik.http.services.probabilidade_api.loadbalancer.passHostHeader=1"
     # Se precisar de variáveis de ambiente, adicione aqui
     # env_file:
     #   - .env
+
+networks:
+  proxy:
+    external: true
