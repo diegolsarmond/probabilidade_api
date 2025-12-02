@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  probabilidade_api:
+    build: .
+    container_name: probabilidade_api
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - DART_FROG_ENV=production
+    # Se precisar de variáveis de ambiente, adicione aqui
+    # env_file:
+    #   - .env
