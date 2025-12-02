@@ -6,7 +6,7 @@ services:
     environment:
       - DART_FROG_ENV=production
     networks:
-      - proxy
+      - apitanos
     deploy:
       restart_policy:
         condition: on-failure
@@ -19,10 +19,10 @@ services:
         - "traefik.http.routers.probabilidade_api.service=probabilidade_api"
         - "traefik.http.services.probabilidade_api.loadbalancer.server.port=8080"
         - "traefik.http.services.probabilidade_api.loadbalancer.passHostHeader=1"
-        - "traefik.docker.network=proxy"
+        - "traefik.docker.network=apitanos"
     # env_file:
     #   - .env
 
 networks:
-  proxy:
+  apitanos:
     external: true
