@@ -66,8 +66,7 @@ class TerminalProbResult implements TerminalProbEntity {
   @override
   Map<String, dynamic> get toMap => {
     'porcentagem': frequencyPercent,
-    'sugestao': suggestion,
-    'media': median,
+    'sugestao': suggestion?.number,
     'logica': logicType.name,
   };
 

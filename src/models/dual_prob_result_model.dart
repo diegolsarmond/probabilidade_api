@@ -75,7 +75,6 @@ class DualProbResult implements DualProbEntity {
   Map<String, dynamic> get toMap => {
     'porcentagem': frequencyPercent,
     'sugestao': suggestion,
-    'media': median,
     'logica': logicType.nameTr,
   };
 

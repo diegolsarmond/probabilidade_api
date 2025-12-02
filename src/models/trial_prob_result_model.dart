@@ -102,7 +102,6 @@ class TrialProbResult implements TrialProbEntity {
   Map<String, dynamic> get toMap => {
     'porcentagem': frequencyPercent,
     'sugestao': suggestion,
-    'media': median,
     'logica': logicType.nameTr,
   };
 

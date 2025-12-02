@@ -16,30 +16,38 @@ Future<Response> onRequest(RequestContext context) async {
     final data = jsonDecode(body);
     final response = _validateFields(data as Map<String, dynamic>, context);
 
-    if(response == null){
+    if (response == null) {
       final locale = context.request.uri.queryParameters['idioma'];
       if (locale != null) R.load(locale);
-
-      final numbers = List<NumberEntity>.from(
-        (data['numeros'] as List).map((e) {
-          return e is int ? NumberItem(number: e) : NumberItem(number: 0);
-        }),
-      ).toList();
+      final numbersInt = List.of(data['numeros'] as List).cast<int>();
+      if (numbersInt.any((e) => e > 36)) {
+        return Response(
+          statusCode: 400,
+          body: 'Os números inseridos devem estar entre 0 e 36',
+        );
+      }
+      final numbers = List<NumberEntity>.from(numbersInt.map((e) => NumberItem(number: e))).toList();
 
       _analyze(numbers, data['limiteNumeros'] as int, data['minimoPorcento'] as int);
-      return  Response.json(
+      return Response.json(
         body: probabilities.map(_getLogicData).toList(),
       );
     }
 
     return response;
-  } catch (error) {
+  } catch (error, stack) {
+    print(stack);
     return Response(statusCode: 500, body: error.toString());
   }
 }
 
 Response? _validateFields(Map<String, dynamic> data, RequestContext context) {
-  if (!data.containsKey('limiteNumeros') ||
+  if (data.isEmpty) {
+    return Response(
+      statusCode: 400,
+      body: 'é necessário informar limiteNumeros, minimoPorcento e numeros',
+    );
+  } else if (!data.containsKey('limiteNumeros') ||
       data['limiteNumeros']! is bool ||
       data['limiteNumeros'] == null ||
       data['limiteNumeros'] == '') {
@@ -47,7 +55,7 @@ Response? _validateFields(Map<String, dynamic> data, RequestContext context) {
       statusCode: 400,
       body: 'O campo limiteNumeros é obrigatório',
     );
-  }else if (!data.containsKey('minimoPorcento') ||
+  } else if (!data.containsKey('minimoPorcento') ||
       data['minimoPorcento']! is bool ||
       data['minimoPorcento'] == null ||
       data['minimoPorcento'] == '') {
@@ -55,7 +63,7 @@ Response? _validateFields(Map<String, dynamic> data, RequestContext context) {
       statusCode: 400,
       body: 'O campo minimoPorcento é obrigatório',
     );
-  }else if (!data.containsKey('numeros') ||
+  } else if (!data.containsKey('numeros') ||
       data['numeros']! is bool ||
       data['numeros'] == null ||
       data['numeros'] == '') {

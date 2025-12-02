@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:uuid/uuid.dart';
 
 import '../domain/entities/_entities.dart';
@@ -98,5 +97,4 @@ class NumberItem implements NumberEntity {
       dateHour: DateTime.now(),
     );
   }
-
 }
