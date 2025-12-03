@@ -12,7 +12,7 @@ services:
         condition: on-failure
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.probabilidade_api.rule=Host(`api.vmageste.com.br`)"
+        - "traefik.http.routers.probabilidade_api.rule=Host(`app.vmageste.com.br`)"
         - "traefik.http.routers.probabilidade_api.entrypoints=websecure"
         - "traefik.http.routers.probabilidade_api.priority=1"
         - "traefik.http.routers.probabilidade_api.tls.certresolver=letsencryptresolver"
