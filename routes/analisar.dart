@@ -142,27 +142,31 @@ void _analyze(List<NumberEntity> numbers, int minAnalysis, int minPercentage) {
 }
 
 Map<String, dynamic>? _getLogicData(ProbResultEntity probResult) {
+  Map<String, dynamic>? result;
   if (probResult.modelProbType == ModelProbType.colors) {
     final colorsProbResult = probResult as DualProbResultEntity;
-    return colorsProbResult.highestFrequencyPercent?.toMap;
+    result = colorsProbResult.highestFrequencyPercent?.toMap;
   } else if (probResult.modelProbType == ModelProbType.evenOdd) {
     final evenOddProbResult = probResult as DualProbResultEntity;
-    return evenOddProbResult.highestFrequencyPercent?.toMap;
+    result = evenOddProbResult.highestFrequencyPercent?.toMap;
   } else if (probResult.modelProbType == ModelProbType.highLow) {
     final highLowProbResult = probResult as DualProbResultEntity;
-    return highLowProbResult.highestFrequencyPercent?.toMap;
+    result = highLowProbResult.highestFrequencyPercent?.toMap;
   } else if (probResult.modelProbType == ModelProbType.decade) {
     final decadeResult = probResult as TrialProbResultEntity;
-    return decadeResult.highestPercent?.toMap;
+    result = decadeResult.highestPercent?.toMap;
   } else if (probResult.modelProbType == ModelProbType.columns) {
     final columnResult = probResult as TrialProbResultEntity;
-    return columnResult.highestPercent?.toMap;
+    result = columnResult.highestPercent?.toMap;
   } else if (probResult.modelProbType == ModelProbType.terminal) {
     final terminalResult = probResult as TerminalProbResultEntity;
-    return terminalResult.highestFrequencyPercent?.toMap;
+    result = terminalResult.highestFrequencyPercent?.toMap;
   } else if (probResult.modelProbType == ModelProbType.sectors) {
     final sectorResult = probResult as SectorProbResultEntity;
-    return sectorResult.highestPercent?.toMap;
+    result = sectorResult.highestPercent?.toMap;
   }
-  return null;
+  if (result != null) {
+    result['estrategia'] = probResult.modelProbType.name;
+  }
+  return result;
 }
