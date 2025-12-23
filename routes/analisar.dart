@@ -142,6 +142,16 @@ void _analyze(List<NumberEntity> numbers, int minAnalysis, int minPercentage) {
 }
 
 Map<String, dynamic>? _getLogicData(ProbResultEntity probResult) {
+  const estrategiasTraducao = {
+    'sectors': 'Setores',
+    'decade': 'Dúzias',
+    'columns': 'Colunas',
+    'colors': 'Cores',
+    'evenOdd': 'Par/Ímpar',
+    'highLow': 'Alto/Baixo',
+    'terminal': 'Terminal',
+  };
+
   Map<String, dynamic>? result;
   if (probResult.modelProbType == ModelProbType.colors) {
     final colorsProbResult = probResult as DualProbResultEntity;
@@ -166,7 +176,7 @@ Map<String, dynamic>? _getLogicData(ProbResultEntity probResult) {
     result = sectorResult.highestPercent?.toMap;
   }
   if (result != null) {
-    result['estrategia'] = probResult.modelProbType.name;
+    result['estrategia'] = estrategiasTraducao[probResult.modelProbType.name] ?? probResult.modelProbType.name;
   }
   return result;
 }
