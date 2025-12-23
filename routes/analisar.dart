@@ -164,17 +164,19 @@ Map<String, dynamic>? _getLogicData(ProbResultEntity probResult) {
     result = highLowProbResult.highestFrequencyPercent?.toMap;
   } else if (probResult.modelProbType == ModelProbType.decade) {
     final decadeResult = probResult as TrialProbResultEntity;
-    result = decadeResult.highestPercent?.toMap;
-    // Multiplicador para Dúzias (3 opções = max teórico 33%)
-    if (result != null && result['porcentagem'] != null) {
+    final highestPercent = decadeResult.highestPercent;
+    result = highestPercent?.toMap;
+    // Multiplicador para Dúzias apenas para lógica alternation
+    if (result != null && result['porcentagem'] != null && highestPercent?.logicType == LogicType.alternation) {
       var porcentagemAjustada = (result['porcentagem'] as int) * 1.5;
       result['porcentagem'] = porcentagemAjustada > 100 ? 100 : porcentagemAjustada.round();
     }
   } else if (probResult.modelProbType == ModelProbType.columns) {
     final columnResult = probResult as TrialProbResultEntity;
-    result = columnResult.highestPercent?.toMap;
-    // Multiplicador para Colunas (3 opções = max teórico 33%)
-    if (result != null && result['porcentagem'] != null) {
+    final highestPercent = columnResult.highestPercent;
+    result = highestPercent?.toMap;
+    // Multiplicador para Colunas apenas para lógica alternation
+    if (result != null && result['porcentagem'] != null && highestPercent?.logicType == LogicType.alternation) {
       var porcentagemAjustada = (result['porcentagem'] as int) * 1.5;
       result['porcentagem'] = porcentagemAjustada > 100 ? 100 : porcentagemAjustada.round();
     }
