@@ -165,15 +165,30 @@ Map<String, dynamic>? _getLogicData(ProbResultEntity probResult) {
   } else if (probResult.modelProbType == ModelProbType.decade) {
     final decadeResult = probResult as TrialProbResultEntity;
     result = decadeResult.highestPercent?.toMap;
+    // Multiplicador para Dúzias (3 opções = max teórico 33%)
+    if (result != null && result['porcentagem'] != null) {
+      var porcentagemAjustada = (result['porcentagem'] as int) * 1.5;
+      result['porcentagem'] = porcentagemAjustada > 100 ? 100 : porcentagemAjustada.round();
+    }
   } else if (probResult.modelProbType == ModelProbType.columns) {
     final columnResult = probResult as TrialProbResultEntity;
     result = columnResult.highestPercent?.toMap;
+    // Multiplicador para Colunas (3 opções = max teórico 33%)
+    if (result != null && result['porcentagem'] != null) {
+      var porcentagemAjustada = (result['porcentagem'] as int) * 1.5;
+      result['porcentagem'] = porcentagemAjustada > 100 ? 100 : porcentagemAjustada.round();
+    }
   } else if (probResult.modelProbType == ModelProbType.terminal) {
     final terminalResult = probResult as TerminalProbResultEntity;
     result = terminalResult.highestFrequencyPercent?.toMap;
   } else if (probResult.modelProbType == ModelProbType.sectors) {
     final sectorResult = probResult as SectorProbResultEntity;
     result = sectorResult.highestPercent?.toMap;
+    // Multiplicador apenas para Setores (3 opções = max teórico 33%)
+    if (result != null && result['porcentagem'] != null) {
+      var porcentagemAjustada = (result['porcentagem'] as int) * 1.5;
+      result['porcentagem'] = porcentagemAjustada > 100 ? 100 : porcentagemAjustada.round();
+    }
   }
   if (result != null) {
     result['estrategia'] = estrategiasTraducao[probResult.modelProbType.name] ?? probResult.modelProbType.name;
