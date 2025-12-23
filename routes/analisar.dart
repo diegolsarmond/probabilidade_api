@@ -160,6 +160,9 @@ Map<String, dynamic>? _getLogicData(ProbResultEntity probResult) {
   } else if (probResult.modelProbType == ModelProbType.terminal) {
     final terminalResult = probResult as TerminalProbResultEntity;
     return terminalResult.highestFrequencyPercent?.toMap;
+  } else if (probResult.modelProbType == ModelProbType.sectors) {
+    final sectorResult = probResult as SectorProbResultEntity;
+    return sectorResult.highestPercent?.toMap;
   }
   return null;
 }
