@@ -69,7 +69,7 @@ class SectorProbUseCase {
     double frequencyPercentage = alternationHistory.first == 0
         ? 0
         : okCountLength / (okCountLength + noCountHistory.sum()) * 100;
-     frequencyPercentage *= 1.5;
+    // frequencyPercentage *= 1.5;
 
     double median = 0;
     String? nextKey;
@@ -86,7 +86,7 @@ class SectorProbUseCase {
         median = noCountHistory.isEmpty ? 0 : noCountHistory.sum() / noCountHistory.length;
         frequencyPercentage =
             okCountLength == 0 ? 0 : okCountLength / (okCountLength + noCountHistory.sum()) * 100;
-         frequencyPercentage *= 1.5;
+       //  frequencyPercentage *= 1.5;
       }
       if (noCount < median.round()) nextKey = null;
       if (nextKey != null) {
@@ -145,7 +145,7 @@ class SectorProbUseCase {
     int okCountLength = repeatHistory.length;
     double frequencyPercentage =
         repeatHistory.first == 0 ? 0 : okCountLength / (okCountLength + noCountHistory.sum()) * 100;
-     frequencyPercentage *= 1.5;
+    // frequencyPercentage *= 1.5;
 
     double median = 0;
     String? nextKey;
@@ -161,7 +161,7 @@ class SectorProbUseCase {
         median = noCountHistory.isEmpty ? 0 : noCountHistory.sum() / noCountHistory.length;
         frequencyPercentage =
             okCountLength == 0 ? 0 : okCountLength / (okCountLength + noCountHistory.sum()) * 100;
-        frequencyPercentage *= 1.5;
+       // frequencyPercentage *= 1.5;
       }
 
       if (noCount < median.round()) nextKey = null;
