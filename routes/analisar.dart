@@ -187,10 +187,10 @@ Map<String, dynamic>? _getLogicData(ProbResultEntity probResult) {
     final sectorResult = probResult as SectorProbResultEntity;
     result = sectorResult.highestPercent?.toMap;
     // Multiplicador apenas para Setores (3 opções = max teórico 33%)
-    if (result != null && result['porcentagem'] != null) {
-      var porcentagemAjustada = (result['porcentagem'] as int) * 1.5;
-      result['porcentagem'] = porcentagemAjustada > 100 ? 100 : porcentagemAjustada.round();
-    }
+    // if (result != null && result['porcentagem'] != null) {
+    //   var porcentagemAjustada = (result['porcentagem'] as int) * 1.5;
+    //   result['porcentagem'] = porcentagemAjustada > 100 ? 100 : porcentagemAjustada.round();
+    // }
   }
   if (result != null) {
     result['estrategia'] = estrategiasTraducao[probResult.modelProbType.name] ?? probResult.modelProbType.name;
